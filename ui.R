@@ -1,3 +1,4 @@
+
 shinyUI(fluidPage(
   titlePanel("Preto Café - Contador de Café"),
   sidebarLayout(
