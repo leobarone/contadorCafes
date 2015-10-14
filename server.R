@@ -10,7 +10,7 @@ shinyServer(
   })
 
   output$tableOutput <- renderTable({ 
-    dados <- read.table("data/dados.txt", sep = ";", header = T, stringsAsFactors = F)
+    dados <- drop_read_csv("dados.txt")
     contador <- dados$Id[nrow(dados)] + 1
     dados <- rbind(dados, data.frame("Id" = contador,
                                      "Nome" = input$nome,
@@ -20,6 +20,8 @@ shinyServer(
                                                    input$outros), stringsAsFactors = F)
     ) 
     write.table(dados,"data/dados.txt", sep =  ";", row.names = F, quote = T)
+    drop_upload("data/dados.txt")
+    
     dados[dados$Id == contador | dados$Id == (contador - 1),]
     })
 }
