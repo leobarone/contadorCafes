@@ -1,3 +1,5 @@
+library(rdrop2)
+
 shinyServer(
   function(input, output) {
     
