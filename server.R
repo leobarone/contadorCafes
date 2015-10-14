@@ -1,19 +1,12 @@
 library(rdrop2)
+library(plyr)
 library(dplyr)
 
 shinyServer(
   function(input, output) {
     
-  output$dateOutput <- renderText({ 
-    paste("Hoje é", as.character(input$date))
-  })
-  
-  output$nomeOutput <- renderText({ 
-    paste("Você é ", input$nome)
-  })
-
   output$tableOutput <- renderTable({ 
-    dados <- drop_read_csv("dados.txt")
+    dados <- drop_read_csv("dados.txt", sep = ";")
     contador <- dados$Id[nrow(dados)] + 1
     dados <- rbind(dados, data.frame("Id" = contador,
                                      "Nome" = input$nome,
