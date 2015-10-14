@@ -1,4 +1,5 @@
 library(rdrop2)
+library(dplyr)
 
 shinyServer(
   function(input, output) {
